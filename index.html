@@ -47,13 +47,14 @@
 
 <div id="app">
     <h1 class="title-center">VueJS photo pagination</h1>
+
     <section class="grid">
-        <div class="grid__item card" v-for="photo in photos">
-            <div class="card__body">
+        <div class="grid__item card" v-for="(photo, id) in photos">
+            <div class="card__body" @click="selectPhoto(photo.id)">
                 <img :src="photo.urls.small" alt="">
             </div>
             <div class="card__footer media">
-                <img :src="photo.user.profile_image.small" alt="" class="media__obj">
+                <img :src="photo.user.profile_image.small" alt="image" class="media__obj">
                 <div class="media__body">
                     <a :href="photo.user.portfolio_url" target="_blank">
                         {{photo.user.name}}
@@ -62,12 +63,26 @@
             </div>
         </div>
     </section>
+
     <pagination
         :current="currentPage"
         :total="totalPhotos"
         :perPage="perPage"
         @page-change="fetchPhotos"
     ></pagination>
+
+    <div class="modal-wrapper" v-if="showModal">
+        <div class="shadow" @click="toggleModal"></div>
+        <div class="modal-photo">
+            <button class="modal-photo__close" @click="toggleModal">x</button>
+            <section class="modal-photo__content">
+                <img
+                    class="modal-photo__image"
+                    :src="currentPhoto.urls.regular"
+                    alt="">
+            </section>
+        </div>
+    </div>
 </div>
 
 

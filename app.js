@@ -6,7 +6,9 @@ new Vue({
 		photos: [],
 		totalPhotos: 0,
 		perPage: 9,
-		currentPage: 1
+		currentPage: 1,
+		currentPhoto: null,
+		showModal: false
 	},
 	methods: {
 		fetchPhotos(page) {
@@ -20,11 +22,19 @@ new Vue({
 
 			this.$http.get('https://api.unsplash.com/photos', options)
 				.then(response => {
-					console.log('response.data', response.data)
+					console.log('response.data', response.data);
 					this.photos = response.data;
 					this.totalPhotos = parseInt(response.headers.get('x-total'));
 					this.currentPage = page;
 				})
+		},
+		selectPhoto(photoId) {
+			this.currentPhoto = this.photos.find(item => item.id === photoId);
+			this.toggleModal();
+			console.log('currentPhoto', this.currentPhoto)
+		},
+		toggleModal() {
+			this.showModal = !this.showModal;
 		}
 	},
 	created() {
