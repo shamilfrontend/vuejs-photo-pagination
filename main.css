@@ -203,6 +203,14 @@ body {
 }
 
 @media (max-width: 768px) {
+	body {
+		padding: 0;
+	}
+
+	.grid__item {
+		width: 100%;
+	}
+
 	.pagination {
 		flex-direction: column;
 		height: auto;
@@ -227,5 +235,10 @@ body {
 
 	.pagination__middle ul li {
 		margin: 10px;
+	}
+
+	.modal-photo {
+		max-width: 96%;
+		width: 96%;
 	}
 }
