@@ -201,3 +201,31 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+@media (max-width: 768px) {
+	.pagination {
+		flex-direction: column;
+		height: auto;
+	}
+
+	.pagination__left, .pagination__right {
+		width: 100%;
+		float: none;
+	}
+
+	.pagination a {
+		display: block;
+		max-width: 100%;
+		width: 100%;
+	}
+
+	.pagination__middle {
+		width: 100%;
+		flex-wrap: wrap;
+		padding: 10px 0;
+	}
+
+	.pagination__middle ul li {
+		margin: 10px;
+	}
+}
